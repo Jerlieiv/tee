@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>For Takondwa Tkay ❤️</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@100;300;600&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --pink: #ff2d75;
+            --purple: #bc13fe;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            background: #020205;
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Mouse Follower Glow */
+        #cursor-glow {
+            position: fixed;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(255, 45, 117, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            transition: width 0.3s, height 0.3s;
+        }
+
+        /* Animated Mesh Gradient Background */
+        .mesh-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(at 0% 0%, rgba(188, 19, 254, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(255, 45, 117, 0.15) 0px, transparent 50%);
+            z-index: 0;
+        }
+
+        /* Main Card with Neo-Glassmorphism */
+        .main-card {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 500px;
+            background: var(--glass);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+            border-bottom: 3px solid var(--pink);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 6px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 40px 40px 0 0;
+            overflow: hidden;
+        }
+        #progress-bar {
+            width: 0%; height: 100%;
+            background: linear-gradient(90deg, var(--purple), var(--pink));
+            transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            background: linear-gradient(to bottom, #fff, var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .story-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            font-weight: 300;
+            min-height: 200px;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        /* Floating 3D Hearts */
+        .float-heart {
+            position: absolute;
+            font-size: 2rem;
+            pointer-events: none;
+            z-index: 5;
+            animation: floatUpDown 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px var(--pink));
+        }
+
+        @keyframes floatUpDown {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            50% { transform: translateY(-100px) rotate(20deg); opacity: 0.8; }
+        }
+
+        /* Luxury Button */
+        .btn-glow {
+            background: transparent;
+            border: 1px solid var(--pink);
+            color: white;
+            padding: 14px 45px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-glow:hover {
+            background: var(--pink);
+            box-shadow: 0 0 30px var(--pink);
+            color: white;
+        }
+
+        #entry {
+            position: fixed; inset: 0; background: #000; z-index: 1000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+        }
+        .pulse-logo { font-size: 5rem; animation: pulse 2s infinite; cursor: pointer; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.5; } }
+    </style>
+</head>
+<body>
+
+    <div id="cursor-glow"></div>
+    <div class="mesh-bg"></div>
+
+    <div id="entry" onclick="init()">
+        <div class="pulse-logo">❤️</div>
+        <p style="color: var(--pink); letter-spacing: 8px; font-size: 0.7rem; margin-top: 20px;">FOR TAKONDWA TKAY</p>
+    </div>
+
+    <audio id="audio" loop>
+        <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0b59c87b5e.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="main-card d-none" id="card">
+            <div class="progress-container"><div id="progress-bar"></div></div>
+            
+            <h1 id="user-name">Takondwa Tkay</h1>
+            
+            <div class="story-content" id="story-box">
+                </div>
+
+            <div id="controls" class="mt-4">
+                <button class="btn btn-glow" onclick="nextStep()">Continue ✦</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const memories = [
+            "We first met at SOS...",
+            "Became mutuals at your graduation 🎓",
+            "We became friends for a long time after that...",
+            "Then we started dating. And it was good. Everything felt right.",
+            "Until that time... you know what happened.",
+            "But we sorted out our issues and started dating again 💫",
+            "Then I don't know what happened to you... why you started doing what you were doing.",
+            "Fast forward... you know what happened next.",
+            "And now... let's see where this journey takes us. Once again. ❤️"
+        ];
+
+        let current = 0;
+
+        // Cursor Follower
+        const glow = document.getElementById('cursor-glow');
+        window.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+
+        function init() {
+            document.getElementById('entry').style.display = 'none';
+            document.getElementById('card').classList.remove('d-none');
+            document.getElementById('audio').play().catch(e => console.log("Audio play failed:", e));
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            const box = document.getElementById('story-box');
+            const progress = document.getElementById('progress-bar');
+            
+            box.style.transform = "translateY(10px)";
+            box.style.opacity = 0;
+            
+            setTimeout(() => {
+                box.innerHTML = memories[current];
+                box.style.transform = "translateY(0)";
+                box.style.opacity = 1;
+                progress.style.width = ((current + 1) / memories.length) * 100 + "%";
+            }, 300);
+
+            spawnHeart();
+        }
+
+        function nextStep() {
+            if (current < memories.length - 1) {
+                current++;
+                updateDisplay();
+                if (current === memories.length - 1) renderFinal();
+            }
+        }
+
+        function renderFinal() {
+            document.getElementById('controls').innerHTML = `
+                <div class="d-flex justify-content-center gap-3">
+                    <button class="btn btn-glow" onclick="accepted()">Let's Try Again 💖</button>
+                    <button class="btn btn-outline-secondary rounded-pill" id="no-btn" onmouseover="dodge()">Not Now</button>
+                </div>
+            `;
+        }
+
+        function dodge() {
+            const btn = document.getElementById('no-btn');
+            btn.style.position = 'fixed';
+            btn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            btn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+        }
+
+        function accepted() {
+            document.getElementById('story-box').innerHTML = "<span style='color: var(--pink); font-size: 1.5rem;'>Happy Valentine's Day Takondwa!</span><br><br>Whatever happens next, thank you for being part of my story. Let's see where this leads us... ❤️";
+            document.getElementById('controls').innerHTML = "";
+            for(let i=0; i<20; i++) setTimeout(spawnHeart, i * 100);
+            
+            setTimeout(() => {
+                window.location.href = "https://wa.me/265992396006?text=Let's%20see%20where%20this%20takes%20us%20❤️";
+            }, 4000);
+        }
+
+        function spawnHeart() {
+            const h = document.createElement('div');
+            h.className = 'float-heart';
+            h.innerHTML = ['❤️', '💖', '✨', '🌸', '💫'][Math.floor(Math.random() * 5)];
+            h.style.left = Math.random() * 80 + 10 + "vw";
+            h.style.top = "90vh";
+            h.style.animationDuration = (Math.random() * 3 + 3) + "s";
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 5000);
+        }
+    </script>
+</body>
+</html>
